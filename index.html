@@ -6,12 +6,16 @@
     <title>Opada Saleh - Portfolio</title>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Ninja+Naruto&display=swap');
+
+        html {
+            scroll-behavior: smooth;
+        }
 
         body {
-            font-family: 'Press Start 2P', 'Roboto', 'Helvetica Neue', Arial, sans-serif; /* Gaming font */
-            background: linear-gradient(45deg, #0f0, #00f, #f00, #0ff, #ff0, #f0f);
-            background-size: 400% 400%;
-            animation: gradient 10s ease infinite;
+            font-family: 'Ninja Naruto', 'Press Start 2P', 'Roboto', 'Helvetica Neue', Arial, sans-serif; /* Ninja font */
+            background-size: 800% 800%; /* Increased background size */
+            transition: background 1s ease; /* Smooth transition */
             color: #f5f5f5;
             margin: 0;
             padding: 0;
@@ -24,7 +28,9 @@
 
         @keyframes gradient {
             0% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
+            25% { background-position: 100% 50%; }
+            50% { background-position: 100% 100%; }
+            75% { background-position: 0% 100%; }
             100% { background-position: 0% 50%; }
         }
 
@@ -45,8 +51,21 @@
             transform: translateY(0);
         }
 
+        header {
+            text-align: center;
+            margin-bottom: 20px;
+            animation: fadeInDown 1s ease-in-out;
+        }
+
+        .about {
+            text-align: center;
+            margin-bottom: 20px;
+            animation: fadeInUp 1s ease-in-out;
+        }
+
         .skills-container, .projects-container, .contact {
             margin-top: 20px;
+            animation: fadeIn 1s ease-in-out;
         }
 
         table {
@@ -69,11 +88,18 @@
             background-color: #333;
         }
 
+        tr:hover {
+            background-color: rgba(255, 255, 255, 0.1);
+        }
+
         nav ul {
             list-style: none;
             padding: 0;
             display: flex;
             justify-content: space-around;
+            background-color: rgba(0, 0, 0, 0.85);
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
         }
 
         nav ul li {
@@ -83,6 +109,61 @@
         nav ul li a {
             color: #f5f5f5;
             text-decoration: none;
+            padding: 10px 20px;
+            display: block;
+            transition: background-color 0.3s ease;
+        }
+
+        nav ul li a:hover {
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 5px;
+        }
+
+        button {
+            background-color: #444;
+            color: #f5f5f5;
+            border: none;
+            padding: 10px 20px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            border-radius: 5px;
+        }
+
+        button:hover {
+            background-color: #555;
+        }
+
+        .back-to-top {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background-color: #444;
+            color: #f5f5f5;
+            border: none;
+            padding: 10px 20px;
+            cursor: pointer;
+            border-radius: 5px;
+            display: none;
+            z-index: 1000;
+        }
+
+        .back-to-top.visible {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        @keyframes fadeInDown {
+            from { opacity: 0; transform: translateY(-20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
         }
 
         @media (max-width: 768px) {
@@ -127,6 +208,7 @@
             </ul>
         </nav>
         <div class="skills-container" id="skills">
+            <h2>Skills</h2>
             <table class="skills">
                 <thead>
                     <tr>
@@ -155,6 +237,7 @@
             </table>
         </div>
         <div class="projects-container" id="projects">
+            <h2>Projects</h2>
             <table class="projects">
                 <thead>
                     <tr>
@@ -179,6 +262,7 @@
             </table>
         </div>
         <div class="contact" id="contact">
+            <h2>Contact</h2>
             <p>Contact me: <a href="mailto:opadasadleh@gmail.com">opadasadleh@gmail.com</a></p>
             <form class="contact-form" action="https://formspree.io/f/mqaagpgj" method="POST">
                 <input type="text" name="name" placeholder="Your Name" required>
@@ -193,19 +277,14 @@
         </footer>
     </div>
 
+    <button class="back-to-top">Back to Top</button>
+
     <script>
         document.addEventListener("DOMContentLoaded", function() {
             const container = document.querySelector('.container');
             if (container) {
                 container.classList.add('visible');
             }
-
-            const cells = document.querySelectorAll('.cell');
-            cells.forEach((cell, index) => {
-                setTimeout(() => {
-                    cell.classList.add('visible');
-                }, index * 100); // Delay for each cell
-            });
 
             const form = document.querySelector('.contact-form');
             const successMessage = document.querySelector('.success-message');
@@ -230,18 +309,53 @@
                     alert('There was a problem with your submission. Please try again.');
                 });
             });
-        });
 
-        document.querySelectorAll('nav ul li a').forEach(anchor => {
-            anchor.addEventListener('click', function(e) {
-                e.preventDefault();
-                const target = document.querySelector(this.getAttribute('href'));
-                if (target) {
-                    target.scrollIntoView({
-                        behavior: 'smooth'
-                    });
+            const backToTopButton = document.querySelector('.back-to-top');
+            window.addEventListener('scroll', () => {
+                if (window.scrollY > 300) {
+                    backToTopButton.classList.add('visible');
+                } else {
+                    backToTopButton.classList.remove('visible');
                 }
             });
+
+            backToTopButton.addEventListener('click', () => {
+                window.scrollTo({
+                    top: 0,
+                    behavior: 'smooth'
+                });
+            });
+
+            document.querySelectorAll('nav ul li a').forEach(anchor => {
+                anchor.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const target = document.querySelector(this.getAttribute('href'));
+                    if (target) {
+                        target.scrollIntoView({
+                            behavior: 'smooth'
+                        });
+                    }
+                });
+            });
+
+            // Dynamic background color change
+            const colors = [
+                '#39FF14', '#00FF00', '#66FF66', /* Neon Green */
+                '#FF6EFF', '#FF00CC', '#FD5B78', /* Neon Pink */
+                '#4D4DFF', '#50BFE6', '#00FEFC', /* Neon Blue */
+                '#FFFF66', '#FFF01F', '#CCFF00', /* Neon Yellow */
+                '#FF9933', '#FF6037', '#FF5F1F', /* Neon Orange */
+                '#6F00FF', '#8F00FF', '#DF00FF'  /* Neon Purple */
+            ];
+
+            let colorIndex = 0;
+
+            function changeBackgroundColor() {
+                document.body.style.background = `linear-gradient(90deg, ${colors[colorIndex]}, ${colors[(colorIndex + 1) % colors.length]}, ${colors[(colorIndex + 2) % colors.length]})`;
+                colorIndex = (colorIndex + 1) % colors.length;
+            }
+
+            setInterval(changeBackgroundColor, 70); // Change color every 5 seconds
         });
     </script>
 </body>
