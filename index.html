@@ -44,123 +44,29 @@
             opacity: 1;
             transform: translateY(0);
         }
-        header, footer {
-            text-align: center;
-            padding: 10px;
-            border-bottom: 1px solid #3a3a3a;
-            border-radius: 15px; /* Rounded corners */
-        }
-        footer {
-            border-top: 1px solid #3a3a3a;
-            border-bottom: none;
-            border-radius: 0 0 15px 15px; /* Rounded corners for bottom */
-        }
-        header h1 {
-            margin: 0;
-            font-size: 2.5em;
-            color: #00ff00; /* Neon green */
-            text-shadow: 2px 2px 8px #000;
-        }
-        .about {
-            font-size: 1.2em;
-            text-align: center;
-            margin: 20px 0;
-            color: #f5f5f5;
-        }
-        nav ul {
-            list-style: none;
-            padding: 0;
-            margin: 0;
-            display: flex;
-            justify-content: center;
-            margin-bottom: 20px;
-        }
-        nav ul li {
-            margin: 0 15px;
-        }
-        nav ul li a {
-            text-decoration: none;
-            color: #00ffff; /* Neon cyan */
-            transition: color 0.3s ease-in-out;
-        }
-        nav ul li a:hover {
-            color: #ff00ff; /* Neon magenta */
-        }
-        .skills-container, .projects-container {
-            margin: 20px 0;
-        }
-        .skills, .projects {
-            width: 100%;
-            border-collapse: collapse;
-            border-radius: 15px; /* Rounded corners */
-            overflow: hidden;
-        }
-        table, th, td {
-            border: 1px solid #3a3a3a;
-        }
-        th, td {
-            padding: 10px;
-            text-align: center;
-            transform: translateX(-100%);
-            opacity: 0;
-            transition: transform 0.5s ease-in-out, opacity 0.5s ease-in-out;
-        }
-        th {
-            background-color: #333;
-            color: #00ff00; /* Neon green */
-            text-shadow: 2px 2px 8px #000;
-        }
-        td {
-            color: #dcdcdc;
-            background-color: rgba(0, 0, 0, 0.7);
-        }
-        th.visible, td.visible {
-            transform: translateX(0);
-            opacity: 1;
-        }
-        .contact {
-            text-align: center;
-            margin: 20px 0;
-        }
-        .contact a {
-            color: #00ffff; /* Neon cyan */
-            text-decoration: none;
-            transition: color 0.3s ease-in-out;
-        }
-        .contact a:hover {
-            color: #ff00ff; /* Neon magenta */
-        }
-        .contact p {
-            margin: 5px 0;
-        }
-        .contact-form {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
+
+        .skills-container, .projects-container, .contact {
             margin-top: 20px;
         }
-        .contact-form input, .contact-form textarea {
-            width: 80%;
-            max-width: 600px;
-            padding: 10px;
-            margin: 10px 0;
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+        }
+
+        th, td {
             border: 1px solid #3a3a3a;
-            border-radius: 5px;
-            background-color: rgba(0, 0, 0, 0.7);
-            color: #f5f5f5;
+            padding: 10px;
+            text-align: left;
         }
-        .contact-form button {
-            padding: 10px 20px;
-            border: none;
-            border-radius: 5px;
-            background-color: #00ff00;
-            color: #000;
-            font-size: 1em;
-            cursor: pointer;
-            transition: background-color 0.3s ease-in-out;
+
+        th {
+            background-color: #444;
         }
-        .contact-form button:hover {
-            background-color: #ff00ff;
+
+        td {
+            background-color: #333;
         }
     </style>
 </head>
@@ -170,7 +76,7 @@
             <h1>Opada Saleh - Portfolio</h1>
         </header>
         <div class="about">
-            <p>Hello! I'm Opada Saleh, a Computer Science student with skills in Python, C++, HTML, CSS, and JavaScript. I have a passion for technology and love to create innovative solutions.</p>
+            <p>Hello! I'm Opada Saleh, a Computer Science student and I wish to be the KING.</p>
         </div>
         <nav>
             <ul>
@@ -197,15 +103,11 @@
                         <td>Intermediate</td>
                     </tr>
                     <tr>
-                        <td>HTML</td>
-                        <td>Advanced</td>
+                        <td>C</td>
+                        <td>Intermediate</td>
                     </tr>
                     <tr>
-                        <td>CSS</td>
-                        <td>Advanced</td>
-                    </tr>
-                    <tr>
-                        <td>JavaScript</td>
+                        <td>Fullstack Development</td>
                         <td>Intermediate</td>
                     </tr>
                 </tbody>
