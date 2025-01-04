@@ -15,7 +15,7 @@
         body {
             font-family: 'Ninja Naruto', 'Press Start 2P', 'Roboto', 'Helvetica Neue', Arial, sans-serif; /* Ninja font */
             background-size: 800% 800%; /* Increased background size */
-            transition: background 1s ease; /* Smooth transition */
+            transition: background 5s ease; /* Smooth transition */
             color: #f5f5f5;
             margin: 0;
             padding: 0;
@@ -24,14 +24,7 @@
             align-items: center;
             min-height: 100vh;
             font-weight: 400;
-        }
-
-        @keyframes gradient {
-            0% { background-position: 0% 50%; }
-            25% { background-position: 100% 50%; }
-            50% { background-position: 100% 100%; }
-            75% { background-position: 0% 100%; }
-            100% { background-position: 0% 50%; }
+            /* overflow: hidden; */ /* Prevent scroll during animation */
         }
 
         .container {
@@ -64,8 +57,7 @@
         }
 
         .skills-container, .projects-container, .contact {
-            margin-top: 20px;
-            animation: fadeIn 1s ease-in-out;
+            /* existing code */
         }
 
         table {
@@ -151,6 +143,24 @@
             display: block;
         }
 
+        .katana {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            cursor: pointer;
+            z-index: 1000;
+        }
+
+        .katana img {
+            width: 50px;
+            height: auto;
+            transition: transform 0.3s ease;
+        }
+
+        .katana img:hover {
+            transform: rotate(20deg);
+        }
+
         @keyframes fadeIn {
             from { opacity: 0; }
             to { opacity: 1; }
@@ -193,16 +203,80 @@
             table {
                 font-size: 12px; /* Adjust font size for smaller screens */
             }
+            
+        }
+
+        input, textarea {
+            background-color: #f0f0f0;
+            border: 1px solid #ccc;
+            padding: 10px;
+            font-family: Arial, sans-serif;
+            font-size: 14px;
+            border-radius: 5px;
+            width: 100%;
+            box-sizing: border-box;
+        }
+
+        input:focus, textarea:focus {
+            border-color: #007BFF;
+            outline: none;
+        }
+
+        .contact-form {
+            background-color: rgba(0, 0, 0, 0.85);
+            opacity: 0.5;
+            border: 1px solid #3a3a3a;
+            padding: 20px;
+            border-radius: 15px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.7);
+            margin-bottom: 20px;
+        }
+
+        .contact-form input, .contact-form textarea {
+            background-color: #373434;
+            border: 1px solid #ccc;
+            padding: 10px;
+            font-family: Arial, sans-serif;
+            font-size: 14px;
+            border-radius: 5px;
+            width: 100%;
+            box-sizing: border-box;
+            margin-bottom: 10px;
+        }
+
+        .contact-form input:focus, .contact-form textarea:focus {
+            border-color: #007BFF;
+            outline: none;
+        }
+
+        .contact-form button {
+            background-color: #007BFF;
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            font-size: 14px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .success-message {
+            display: none;
+            color: #28a745;
+            margin-top: 10px;
         }
     </style>
 </head>
 <body>
+    <div class="katana">
+        <img src="https://cdn.iconscout.com/icon/premium/png-512-thumb/katana-1793395-1520928.png?f=webp&w=256" alt="Katana" id="katana-icon">
+    </div>
     <div class="container">
         <header>
             <h1>Opada Saleh - Portfolio</h1>
         </header>
         <div class="about">
-            <p>Hello! I'm Opada Saleh, a Computer Science student and I wish to be the KING.</p>
+            <p>Hello! I'm Opada Saleh, a Computer Science student .</p>
         </div>
         <nav>
             <ul>
@@ -273,8 +347,8 @@
                 <input type="email" name="_replyto" placeholder="Your Email" required>
                 <textarea name="message" placeholder="Your Message" rows="4" required></textarea>
                 <button type="submit">Send Message</button>
+                <div class="success-message">Thank you! Your message has been sent.</div>
             </form>
-            <p class="success-message" style="display:none;">Thank you for your message. I will get back to you soon!</p>
         </div>
         <footer>
             <p>&copy; 2025 Opada Saleh. All rights reserved.</p>
@@ -359,7 +433,22 @@
                 colorIndex = (colorIndex + 1) % colors.length;
             }
 
-            setInterval(changeBackgroundColor, 70); // Change color every 5 seconds
+            setInterval(changeBackgroundColor, 150); // Change color every  seconds
+
+            // Katana click event to change theme
+            const katanaIcon = document.getElementById('katana-icon');
+            katanaIcon.addEventListener('click', () => {
+                window.location.href = 'ninjathe.html'; // Redirect to ninja-themed site
+            });
+
+            const sendButton = document.querySelector('.contact-form button');
+            sendButton.addEventListener('mouseover', function() {
+                sendButton.style.backgroundColor = getRandomColor();
+            });
+
+            sendButton.addEventListener('mouseout', function() {
+                sendButton.style.backgroundColor = '#007BFF';
+            });
         });
     </script>
 </body>
